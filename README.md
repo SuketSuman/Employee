@@ -6,11 +6,12 @@ Instructions:
 4. Test results will be filed in .txt files under Employee folder
  
  Following are the result text file for corresponding Scenario
- loggingADD.txt:- Verify status code and message in response when employee is created
- loggingDeleteAemployee.txt:- Verify status code and message in response when a employee is deleted
- loggingGetAemployee.txt:- Verify status code and message in response when user get a employee
- loggingGetAllemployee.txt:- Verify status code and message in response when user get all employees
- loggingUpdate.txt:- Verify status code and message in response when employee is updated
+ 
+ 1. loggingADD.txt:- Verify status code and message in response when employee is created
+ 2. loggingDeleteAemployee.txt:- Verify status code and message in response when a employee is deleted
+ 3. loggingGetAemployee.txt:- Verify status code and message in response when user get a employee
+ 4. loggingGetAllemployee.txt:- Verify status code and message in response when user get all employees
+ 5. loggingUpdate.txt:- Verify status code and message in response when employee is updated
  
  
  
