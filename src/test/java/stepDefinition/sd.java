@@ -69,7 +69,7 @@ public class sd {
 	@When("user calls getPI with GET request")
 	public void user_calls_get_pi_with_get_request() {
 	    // Write code here that turns the phrase above into concrete actions
-		response =res.when().get("/api/v1/employee/1")
+		response =res.when().get("/api/v1/employee/21")
 				.then().extract().response();
 	}
 	@Given("delete a employee")
@@ -82,7 +82,7 @@ public class sd {
 	@When("user calls deleteAPI with delete request")
 	public void user_calls_delete_api_with_delete_request() {
 	    // Write code here that turns the phrase above into concrete actions
-		response =res.when().delete("/api/v1/delete/2")
+		response =res.when().delete("/api/v1/delete/21")
 				.then().extract().response();
 	}
 	@Given("get all employees")
@@ -101,10 +101,9 @@ public class sd {
 	@Then("get the employee by ID")
 	public void get_the_employee_by_id() throws IOException {
 	    // Write code here that turns the phrase above into concrete actions
-	    String id= getJsonPath(response, "data.id");
 		res= given();
 		
-		response= res.when().get("/api/v1/employee/"+id+"")
+		response= res.when().get("/api/v1/employee/21")
 		.then().log().all().extract().response();
 	}
 
