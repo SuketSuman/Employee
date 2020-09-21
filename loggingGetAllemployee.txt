@@ -13,9 +13,9 @@ HTTP/1.1 200 OK
 Cache-Control: no-cache, private, max-age=31536000
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Mon, 21 Sep 2020 01:17:46 GMT
+Date: Mon, 21 Sep 2020 02:13:14 GMT
 Display: staticcontent_sol
-Expires: Tue, 21 Sep 2021 01:17:45 GMT
+Expires: Tue, 21 Sep 2021 02:13:14 GMT
 Host-Header: c2hhcmVkLmJsdWVob3N0LmNvbQ==
 Referrer-Policy: 
 Response: 200
@@ -26,7 +26,7 @@ X-Ezoic-Cdn: Miss
 X-Middleton-Display: staticcontent_sol
 X-Middleton-Response: 200
 X-Ratelimit-Limit: 60
-X-Ratelimit-Remaining: 57
+X-Ratelimit-Remaining: 58
 X-Sol: pub_site
 Content-Length: 631
 

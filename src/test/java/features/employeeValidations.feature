@@ -45,15 +45,17 @@ Scenario: Verify if getAPI shows Updated Employee informtion when UpdateAPI upda
 Scenario: Verify if getAPI doesnot shows you Employee informtion when DeleteAPI delete an Employee
 	Given delete a employee
 	When user calls deleteAPI with delete request
-	Then verify if we can't get the employee by ID
-
+	Then get the deleted employee by ID
+	And "message" in response body is "Record has not been fetched."
+	
 Scenario: To verify Entire crud operation at once
 	Given Add Employee payload
 	When user calls "createAPI" with Post request
 	Then update employee payload by id
 	And get the employee by ID
+	And Verify updated Employee information
 	And delete the employee by ID
-	And verify if we can't get the employee by ID
+	And "message" in response body is "Record has not been fetched."
 
 Scenario: To verify if we cant create withouth body
 	Given Donot Add Employee body
@@ -61,7 +63,7 @@ Scenario: To verify if we cant create withouth body
 	Then the status code is 422
 
 Scenario: To verify if we cant update withouth body
-	Given Donot Add Update Employee body
+	Given Donot Add Employee body
 	When user calls updateAPI with Put request
 	Then the status code is 422
 	

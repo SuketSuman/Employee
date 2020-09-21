@@ -4,22 +4,15 @@ import static resources.utils.*;
 import static io.restassured.RestAssured.given;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -83,10 +76,7 @@ public class sd {
 	public void delete_a_employee() throws FileNotFoundException {
 	    // Write code here that turns the phrase above into concrete actions
 		RestAssured.baseURI= "http://dummy.restapiexample.com";
-		PrintStream ps= new PrintStream(new FileOutputStream("loggingDeleteAemployee.txt"));
-		res = given()
-				.filter(RequestLoggingFilter.logRequestTo(ps))
-				.filter(ResponseLoggingFilter.logResponseTo(ps));
+		res = given();
 	}
 
 	@When("user calls deleteAPI with delete request")
@@ -99,10 +89,7 @@ public class sd {
 	public void get_all_employees() throws FileNotFoundException {
 	    // Write code here that turns the phrase above into concrete actions
 		RestAssured.baseURI= "http://dummy.restapiexample.com";
-		PrintStream ps= new PrintStream(new FileOutputStream("loggingGetAllemployee.txt"));
-		res = given()
-				.filter(RequestLoggingFilter.logRequestTo(ps))
-				.filter(ResponseLoggingFilter.logResponseTo(ps));
+		res = given();
 	}
 
 	@When("user calls getAllAPI with GET request")
@@ -117,14 +104,53 @@ public class sd {
 	    String id= getJsonPath(response, "data.id");
 		res= given();
 		
-		response2= res.when().get("/api/v1/employee/"+id+"")
+		response= res.when().get("/api/v1/employee/"+id+"")
 		.then().log().all().extract().response();
 	}
 
 	@Then("Verify Employee information")
 	public void verify_employee_information() {
 	    // Write code here that turns the phrase above into concrete actions
-		String employeeName= getJsonPath(response2, "data.employee_name");
+		String employeeName= getJsonPath(response, "data.employee_name");
 		assertEquals(employeeName,"test");
 	}
+	@Then("update employee payload by id")
+	public void update_employee_payload_by_id() throws IOException {
+	    // Write code here that turns the phrase above into concrete actions
+		String id= getJsonPath(response, "data.id");
+		res = given()
+				.header("Content-Type","application/json")
+				.body(new String(Files.readAllBytes(Paths.get("src\\test\\java\\empUpd.json").toAbsolutePath())));
+		response =res.when().put("/api/v1/update/"+id+"")
+				.then().extract().response();
+	}
+
+	@Then("Verify updated Employee information")
+	public void verify_updated_employee_information() {
+	    // Write code here that turns the phrase above into concrete actions
+		String employeeName= getJsonPath(response, "data.employee_name");
+		assertEquals(employeeName,"testUpdate");
+	}
+	@Then("delete the employee by ID")
+	public void delete_the_employee_by_id() {
+	    // Write code here that turns the phrase above into concrete actions
+		String id= getJsonPath(response, "data.id");
+		res = given();
+		response =res.when().delete("/api/v1/delete/"+id+"")
+				.then().extract().response();
+	}
+	@Given("Donot Add Employee body")
+	public void donot_add_employee_body() {
+	    // Write code here that turns the phrase above into concrete actions
+		RestAssured.baseURI= "http://dummy.restapiexample.com";
+		res = given();
+	}
+	@Then("get the deleted employee by ID")
+	public void get_the_deleted_employee_by_id() {
+	    // Write code here that turns the phrase above into concrete actions
+		response= res.when().get("/api/v1/employee/2")
+				.then().log().all().extract().response();
+	}
+
+	
 }
