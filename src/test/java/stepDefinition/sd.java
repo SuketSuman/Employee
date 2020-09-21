@@ -1,4 +1,5 @@
 package stepDefinition;
+import static resources.utils.*;
 
 import static io.restassured.RestAssured.given;
 
@@ -9,6 +10,7 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 
 import io.cucumber.java.en.Given;
@@ -24,14 +26,12 @@ import io.restassured.specification.RequestSpecification;
 public class sd {
 	RequestSpecification res;
 	Response response;
+	Response response2;
 	@Given("Add Employee payload")
 	public void add_employee_payload() throws IOException {
 	    // Write code here that turns the phrase above into concrete actions
 		RestAssured.baseURI= "http://dummy.restapiexample.com";
-		PrintStream ps= new PrintStream(new FileOutputStream("loggingADD.txt"));
 		res = given()
-				.filter(RequestLoggingFilter.logRequestTo(ps))
-				.filter(ResponseLoggingFilter.logResponseTo(ps))
 				.header("Content-Type","application/json")
 				.body(new String(Files.readAllBytes(Paths.get("src\\test\\java\\emp.json").toAbsolutePath())));
 	}
@@ -40,7 +40,7 @@ public class sd {
 	public void user_calls_with_post_request(String string) {
 	    // Write code here that turns the phrase above into concrete actions
 		response =res.when().post("api/v1/create")
-				.then().extract().response();
+				.then().log().all().extract().response();
 	}
 	@Then("the status code is {int}")
 	public void the_status_code_is(Integer status) {
@@ -50,18 +50,13 @@ public class sd {
 	@Then("{string} in response body is {string}")
 	public void in_response_body_is(String key, String value) {
 	    // Write code here that turns the phrase above into concrete actions
-	    String resp = response.asString();
-	    JsonPath jp =new JsonPath(resp);
-	    assertEquals(jp.get(key),value);
+	    assertEquals(getJsonPath(response, "message"),value);
 	}
 	@Given("Update Employee payload")
 	public void update_employee_payload() throws IOException {
 	    // Write code here that turns the phrase above into concrete actions
 		RestAssured.baseURI= "http://dummy.restapiexample.com";
-		PrintStream ps= new PrintStream(new FileOutputStream("loggingUpdate.txt"));
 		res = given()
-				.filter(RequestLoggingFilter.logRequestTo(ps))
-				.filter(ResponseLoggingFilter.logResponseTo(ps))
 				.header("Content-Type","application/json")
 				.body(new String(Files.readAllBytes(Paths.get("src\\test\\java\\empUpd.json").toAbsolutePath())));
 	}
@@ -75,10 +70,7 @@ public class sd {
 	public void get_a_employee() throws FileNotFoundException {
 	    // Write code here that turns the phrase above into concrete actions
 		RestAssured.baseURI= "http://dummy.restapiexample.com";
-		PrintStream ps= new PrintStream(new FileOutputStream("loggingGetAemployee.txt"));
-		res = given()
-				.filter(RequestLoggingFilter.logRequestTo(ps))
-				.filter(ResponseLoggingFilter.logResponseTo(ps));
+		res = given();
 	}
 
 	@When("user calls getPI with GET request")
@@ -118,5 +110,21 @@ public class sd {
 	    // Write code here that turns the phrase above into concrete actions
 		response =res.when().get("/api/v1/employees")
 				.then().extract().response();
+	}
+	@Then("get the employee by ID")
+	public void get_the_employee_by_id() throws IOException {
+	    // Write code here that turns the phrase above into concrete actions
+	    String id= getJsonPath(response, "data.id");
+		res= given();
+		
+		response2= res.when().get("/api/v1/employee/"+id+"")
+		.then().log().all().extract().response();
+	}
+
+	@Then("Verify Employee information")
+	public void verify_employee_information() {
+	    // Write code here that turns the phrase above into concrete actions
+		String employeeName= getJsonPath(response2, "data.employee_name");
+		assertEquals(employeeName,"test");
 	}
 }

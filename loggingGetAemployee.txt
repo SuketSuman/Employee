@@ -12,9 +12,9 @@ Body:			<none>
 HTTP/1.1 200 OK
 Cache-Control: no-cache, private, max-age=31536000
 Content-Type: application/json
-Date: Sun, 20 Sep 2020 16:47:47 GMT
+Date: Mon, 21 Sep 2020 00:46:00 GMT
 Display: staticcontent_sol
-Expires: Mon, 20 Sep 2021 16:47:46 GMT
+Expires: Tue, 21 Sep 2021 00:45:59 GMT
 Host-Header: c2hhcmVkLmJsdWVob3N0LmNvbQ==
 Referrer-Policy: 
 Response: 200

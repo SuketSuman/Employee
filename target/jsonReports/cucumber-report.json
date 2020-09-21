@@ -1,0 +1,456 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2020-09-21T01:17:35.007Z",
+        "line": 3,
+        "name": "Verify status code and message in response when employee is created",
+        "description": "",
+        "id": "validating-employee-api;verify-status-code-and-message-in-response-when-employee-is-created",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1024076700,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "Add Employee payload",
+            "match": {
+              "location": "stepDefinition.sd.add_employee_payload()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2728070800,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "user calls \"createAPI\" with Post request",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"createAPI\"",
+                  "offset": 11
+                }
+              ],
+              "location": "stepDefinition.sd.user_calls_with_post_request(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1989200,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "the status code is 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 19
+                }
+              ],
+              "location": "stepDefinition.sd.the_status_code_is(java.lang.Integer)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 707057300,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "\"message\" in response body is \"Successfully! Record has been added.\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"message\"",
+                  "offset": 0
+                },
+                {
+                  "val": "\"Successfully! Record has been added.\"",
+                  "offset": 30
+                }
+              ],
+              "location": "stepDefinition.sd.in_response_body_is(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-09-21T01:17:39.571Z",
+        "line": 9,
+        "name": "Verify status code and message in response when employee is updated",
+        "description": "",
+        "id": "validating-employee-api;verify-status-code-and-message-in-response-when-employee-is-updated",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1998500,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Update Employee payload",
+            "match": {
+              "location": "stepDefinition.sd.update_employee_payload()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1557437500,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "user calls updateAPI with Put request",
+            "match": {
+              "location": "stepDefinition.sd.user_calls_update_api_with_put_request()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "error_message": "java.lang.AssertionError: expected:\u003c429\u003e but was:\u003c200\u003e\r\n\tat org.junit.Assert.fail(Assert.java:88)\r\n\tat org.junit.Assert.failNotEquals(Assert.java:743)\r\n\tat org.junit.Assert.assertEquals(Assert.java:118)\r\n\tat org.junit.Assert.assertEquals(Assert.java:144)\r\n\tat stepDefinition.sd.the_status_code_is(sd.java:48)\r\n\tat ✽.the status code is 200(file:///C:/Users/Suket%20Suman/eclipse-workspace/Employee/src/test/java/features/employeeValidations.feature:12)\r\n",
+              "duration": 2002800,
+              "status": "failed"
+            },
+            "line": 12,
+            "name": "the status code is 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 19
+                }
+              ],
+              "location": "stepDefinition.sd.the_status_code_is(java.lang.Integer)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "\"message\" in response body is \"Successfully! Record has been updated.\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"message\"",
+                  "offset": 0
+                },
+                {
+                  "val": "\"Successfully! Record has been updated.\"",
+                  "offset": 30
+                }
+              ],
+              "location": "stepDefinition.sd.in_response_body_is(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-09-21T01:17:41.145Z",
+        "line": 15,
+        "name": "Verify status code and message in response when user get a employee",
+        "description": "",
+        "id": "validating-employee-api;verify-status-code-and-message-in-response-when-user-get-a-employee",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "get a employee",
+            "match": {
+              "location": "stepDefinition.sd.get_a_employee()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1261285200,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "user calls getPI with GET request",
+            "match": {
+              "location": "stepDefinition.sd.user_calls_get_pi_with_get_request()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "the status code is 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 19
+                }
+              ],
+              "location": "stepDefinition.sd.the_status_code_is(java.lang.Integer)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 15012100,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "\"message\" in response body is \"Successfully! Record has been fetched.\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"message\"",
+                  "offset": 0
+                },
+                {
+                  "val": "\"Successfully! Record has been fetched.\"",
+                  "offset": 30
+                }
+              ],
+              "location": "stepDefinition.sd.in_response_body_is(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-09-21T01:17:42.426Z",
+        "line": 21,
+        "name": "Verify status code and message in response when a employee is deleted",
+        "description": "",
+        "id": "validating-employee-api;verify-status-code-and-message-in-response-when-a-employee-is-deleted",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 6339700,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "delete a employee",
+            "match": {
+              "location": "stepDefinition.sd.delete_a_employee()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1577073400,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "user calls deleteAPI with delete request",
+            "match": {
+              "location": "stepDefinition.sd.user_calls_delete_api_with_delete_request()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 24,
+            "name": "the status code is 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 19
+                }
+              ],
+              "location": "stepDefinition.sd.the_status_code_is(java.lang.Integer)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 13013800,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "\"message\" in response body is \"Successfully! Record has been deleted\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"message\"",
+                  "offset": 0
+                },
+                {
+                  "val": "\"Successfully! Record has been deleted\"",
+                  "offset": 30
+                }
+              ],
+              "location": "stepDefinition.sd.in_response_body_is(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-09-21T01:17:44.025Z",
+        "line": 27,
+        "name": "Verify status code and message in response when user get all employees",
+        "description": "",
+        "id": "validating-employee-api;verify-status-code-and-message-in-response-when-user-get-all-employees",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 2016800,
+              "status": "passed"
+            },
+            "line": 28,
+            "name": "get all employees",
+            "match": {
+              "location": "stepDefinition.sd.get_all_employees()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1250176700,
+              "status": "passed"
+            },
+            "line": 29,
+            "name": "user calls getAllAPI with GET request",
+            "match": {
+              "location": "stepDefinition.sd.user_calls_get_all_api_with_get_request()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 30,
+            "name": "the status code is 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 19
+                }
+              ],
+              "location": "stepDefinition.sd.the_status_code_is(java.lang.Integer)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 29003900,
+              "status": "passed"
+            },
+            "line": 31,
+            "name": "\"message\" in response body is \"Successfully! All records has been fetched.\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"message\"",
+                  "offset": 0
+                },
+                {
+                  "val": "\"Successfully! All records has been fetched.\"",
+                  "offset": 30
+                }
+              ],
+              "location": "stepDefinition.sd.in_response_body_is(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-09-21T01:17:45.309Z",
+        "line": 33,
+        "name": "Verify if getAPI shows Employee informtion when addAPI adds an Employee",
+        "description": "",
+        "id": "validating-employee-api;verify-if-getapi-shows-employee-informtion-when-addapi-adds-an-employee",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1004200,
+              "status": "passed"
+            },
+            "line": 34,
+            "name": "Add Employee payload",
+            "match": {
+              "location": "stepDefinition.sd.add_employee_payload()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1382577300,
+              "status": "passed"
+            },
+            "line": 35,
+            "name": "user calls \"createAPI\" with Post request",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"createAPI\"",
+                  "offset": 11
+                }
+              ],
+              "location": "stepDefinition.sd.user_calls_with_post_request(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1593928000,
+              "status": "passed"
+            },
+            "line": 36,
+            "name": "get the employee by ID",
+            "match": {
+              "location": "stepDefinition.sd.get_the_employee_by_id()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "error_message": "java.lang.NullPointerException\r\n\tat resources.utils.getJsonPath(utils.java:12)\r\n\tat stepDefinition.sd.verify_employee_information(sd.java:127)\r\n\tat ✽.Verify Employee information(file:///C:/Users/Suket%20Suman/eclipse-workspace/Employee/src/test/java/features/employeeValidations.feature:37)\r\n",
+              "duration": 24015400,
+              "status": "failed"
+            },
+            "line": 37,
+            "name": "Verify Employee information",
+            "match": {
+              "location": "stepDefinition.sd.verify_employee_information()"
+            },
+            "keyword": "And "
+          }
+        ]
+      }
+    ],
+    "name": "Validating Employee API",
+    "description": "",
+    "id": "validating-employee-api",
+    "keyword": "Feature",
+    "uri": "file:src/test/java/features/employeeValidations.feature",
+    "tags": []
+  }
+]
